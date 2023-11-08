@@ -22,21 +22,33 @@ const arabicToRoman = {
   50: "L",
   100: "C",
   500: "D",
-  1000: "M"
+  1000: "M",
 };
-const convert = (number) => arabicToRoman[number] || null;
 
-const numberInput = document.getElementById('number');
+const convertArabToRoman = (number) => arabicToRoman[number] || null;
+const convertRomanToArab = (number) => {
+  let converted;
+
+  for (const [key, value] of Object.entries(arabicToRoman)) {
+    if (value == number) {
+      converted = key;
+    }
+  }
+
+  return converted || null;
+};
+
+const numberInput = document.getElementById("number");
 
 numberInput?.addEventListener("keypress", (e) => {
   if (e.key !== "Enter") {
     return;
   }
-  
-  const resultEl = document.getElementsByClassName('result')[0];
-  const convertedNumber = convert(e.target.value);
+
+  const resultEl = document.getElementsByClassName("result")[0];
+  const convertedNumber = convertRomanToArab(e.target.value);
 
   resultEl.innerHTML = convertedNumber;
-})
+});
 
-module.exports = convert;
+module.exports = { convertArabToRoman, convertRomanToArab };
