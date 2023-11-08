@@ -24,18 +24,19 @@ const arabicToRoman = {
   500: "D",
   1000: "M"
 };
-const convert = (number) => arabicToRoman[number];
+const convert = (number) => arabicToRoman[number] || null;
 
 const numberInput = document.getElementById('number');
 
-numberInput.addEventListener("keypress", (e) => {
+numberInput?.addEventListener("keypress", (e) => {
   if (e.key !== "Enter") {
     return;
   }
   
   const resultEl = document.getElementsByClassName('result')[0];
-  const convertedNumber = convert(e.target.value) || "";
+  const convertedNumber = convert(e.target.value);
 
-  resultEl.innerHTML = convertedNumber
-  
+  resultEl.innerHTML = convertedNumber;
 })
+
+module.exports = convert;
