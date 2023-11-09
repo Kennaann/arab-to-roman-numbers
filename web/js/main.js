@@ -1,10 +1,11 @@
 const convertRomanToArab = async (number) => {
+  const baseApiURL = "https://roman-to-arab-api-a1ce1557b296.herokuapp.com";
   const postData = {
     number: number,
   };
 
   try {
-    const { result } = await fetch("http://localhost:3000/convert", {
+    const { result } = await fetch(`${baseApiURL}/convert`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
