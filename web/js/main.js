@@ -4,13 +4,16 @@ const convertRomanToArab = async (number) => {
   };
 
   try {
-    const { result } = await fetch("http://localhost:3000/convert", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    }).then((response) => response.json());
+    const { result } = await fetch(
+      "https://roman-to-arab-api-a1ce1557b296.herokuapp.com/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      }
+    ).then((response) => response.json());
 
     return result;
   } catch (error) {
