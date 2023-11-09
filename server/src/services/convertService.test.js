@@ -16,6 +16,10 @@ test("convert V to 5", () => {
   expect(convertRomanToArabNumbers("V")).toBe(5);
 });
 
+test("convert O to 0", () => {
+  expect(convertRomanToArabNumbers("O")).toBe(0);
+});
+
 test("convert invalid number return null", () => {
   expect(convertRomanToArabNumbers("IIII")).toBeNull();
 });
