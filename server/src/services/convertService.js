@@ -23,9 +23,14 @@ const romanToArabic = {
   C: 100,
   D: 500,
   M: 1000,
+  O: 0,
 };
 
 const convertRomanToArabNumbers = (number) => {
+  if (romanToArabic[number] === 0) {
+    return romanToArabic[number];
+  }
+
   return romanToArabic[number] || null;
 };
 

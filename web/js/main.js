@@ -29,4 +29,5 @@ numberInput?.addEventListener("keypress", async (e) => {
   const convertedNumber = await convertRomanToArab(e.target.value);
 
   resultEl.innerHTML = convertedNumber;
+  numberInput.value = "";
 });
