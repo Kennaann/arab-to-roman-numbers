@@ -1,54 +1,32 @@
-const arabicToRoman = {
-  1: "I",
-  2: "II",
-  3: "III",
-  4: "IV",
-  5: "V",
-  6: "VI",
-  7: "VII",
-  8: "VIII",
-  9: "IX",
-  10: "X",
-  11: "XI",
-  12: "XII",
-  13: "XIII",
-  14: "XIV",
-  15: "XV",
-  16: "XVI",
-  17: "XVII",
-  18: "XVIII",
-  19: "XIX",
-  20: "XX",
-  50: "L",
-  100: "C",
-  500: "D",
-  1000: "M",
-};
+const convertRomanToArab = async (number) => {
+  const postData = {
+    number: number,
+  };
 
-const convertArabToRoman = (number) => arabicToRoman[number] || null;
-const convertRomanToArab = (number) => {
-  let converted;
+  try {
+    const { result } = await fetch("http://localhost:3000/convert", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    }).then((response) => response.json());
 
-  for (const [key, value] of Object.entries(arabicToRoman)) {
-    if (value == number) {
-      converted = key;
-    }
+    return result;
+  } catch (error) {
+    console.error("Error:", error);
   }
-
-  return converted || null;
 };
 
 const numberInput = document.getElementById("number");
 
-numberInput?.addEventListener("keypress", (e) => {
+numberInput?.addEventListener("keypress", async (e) => {
   if (e.key !== "Enter") {
     return;
   }
 
   const resultEl = document.getElementsByClassName("result")[0];
-  const convertedNumber = convertRomanToArab(e.target.value);
+  const convertedNumber = await convertRomanToArab(e.target.value);
 
   resultEl.innerHTML = convertedNumber;
 });
-
-module.exports = { convertArabToRoman, convertRomanToArab };
